@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="/css/register.css">
+	<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+	<title>login</title>
+</head>
+<body>
+	
+
+
+		<h1><%= messages.error %></h1>
+
+	
+
+	
+	<div class="container-fluid text-center d-inline-block mt-5">
+		<div class="col d-inline-block">
+			<div class="row">
+					<% if( messages.error ) { %>
+				<div class="alert alert-danger ps-autu text-xl-center" role="alert">
+			 	 	Format yang anda masukan salah <a href="/users/register" class="alert-link">klik link ini</a> untuk mengisi ulang
+				</div>
+				<% } else { %> 
+				<h1>LOGIN</h1>
+				<form action="/users/login" method="post">
+				  <div class="mb-3">
+				    <label for="exampleInputEmail1" class="form-label fw-bold">Email address</label>
+				    <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+				    <div id="emailHelp" class="form-text">Masukan Email yang benar</div>
+				  </div>
+				  <div class="mb-3">
+				    <label for="exampleInputPassword1" class="form-label fw-bold">Password</label>
+				    <input type="password" name="password" class="form-control" id="exampleInputPassword1">
+				  </div>
+				  <a href="/users/register">REGISTER</a>
+				  <button type="submit" class="btn btn-primary">Submit</button>
+				</form>
+			</div>
+		</div>
+	</div>	
+
+	<% } %>
+
+
+
+
+	<script src="/js/bootstrap.min.js"></script>
+</body>
+</html>

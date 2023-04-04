@@ -1,0 +1,31 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+
+.parent {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	height: 100vh;
+	justify-content: center;
+	align-items: center;
+	background: #641414;
+}
+
+.parent h1 {
+	color: #fff;
+	margin-bottom: 15px;
+}
+
+.parent .register {
+	background: #fff;
+	padding: 10px 15px;
+	width: 300px;
+	position: relative;
+	height: 250px;
+	border-radius: 15px;
+}
+
