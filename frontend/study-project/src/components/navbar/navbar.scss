@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,600&family=Poppins:wght@200;300;400;500;600;700;800&family=Quicksand:wght@300;400;500;600;700&family=Roboto+Mono:ital,wght@0,300;0,400;0,600;0,700;1,200&display=swap');
+
+$font-utama: 'Montserrat', sans-serif;
+$fontS-normal: 1em;
+$fontS-S: 1.5em;
+$fontS-L: 2em;
+
+@mixin font($size, $weight, $font) {
+	font-family: $font, sans-serif;
+	font-size: $size;
+	font-weight: $weight;
+}
+
+@mixin btn() {
+	font-size: 1em;
+	color: #675D50;
+	font-weight: 600;
+	padding: 5px 20px;
+	border-radius: 20px;
+	background: #ABC4AA;
+	border: 2px solid #ABC4AA;
+}
+
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+// ==== STYLE HEADER =====
+
+a {
+	text-decoration: none;
+}
+
+.header {
+	display: flex;
+	width: 100%;
+	position: fixed;
+	top: 0;
+	font-family: $font-utama;
+	padding: 10px 100px;
+	align-items: center;
+	background: #675D50;
+	color: #000;
+	z-index: 999;
+	.navbar {
+		width: 100%;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		h2 {
+			color: #fff;
+		}
+		.menu {
+			display: flex;
+			align-items: center;
+			list-style: none;
+			@include font(1em, 500, 'Poppins');
+			li {
+				margin-left: 30px;
+				a {
+						
+					color: #fff;
+				}
+			}
+		}
+		.auth {
+			a{
+				margin-left: 10px;
+				@include btn();
+				transition: all 0.3s;
+				&:hover {
+					background: #675D50;
+					color: #ABC4AA;
+				}
+			}
+		}
+	}
+}
