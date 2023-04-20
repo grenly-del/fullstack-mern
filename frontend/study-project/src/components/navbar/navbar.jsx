@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link, NavLink} from 'react-router-dom'
 
 // ==== STYLE =====
 import './navbar.css'
@@ -10,12 +11,13 @@ const Navbar = () => {
 			<nav className="navbar">
 				<h2>Logo</h2>
 				<ul className="menu">
-					<li><a href="#">Home</a></li>
-					<li><a href="#">image</a></li>
+					<li><NavLink to="/">Home</NavLink></li>
+					<li><NavLink to="image">Image</NavLink></li>
+					<li><NavLink to="todo">Todo</NavLink></li>
 				</ul>
 				<div className="auth">
-					<a href="#">Login</a>
-					<a href="#">Register</a>	
+					<NavLink to="/auth/login">Login</NavLink>
+					<NavLink to="/auth/register">Register</NavLink>	
 				</div>
 			</nav>
 		</header>

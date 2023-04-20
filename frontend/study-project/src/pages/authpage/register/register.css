@@ -1,0 +1,13 @@
+.container {
+	background: #F3DEBA;
+	width: 100%;
+	height: 100vh;
+	position: relative;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+	padding: 0 100px;
+	/*justify-content: space-between;*/
+	align-items: center;
+	grid-gap: 30px;
+	overflow: hidden;
+}

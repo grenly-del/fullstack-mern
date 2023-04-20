@@ -1,4 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,600&family=Poppins:wght@200;300;400;500;600;700;800&family=Quicksand:wght@300;400;500;600;700&family=Roboto+Mono:ital,wght@0,300;0,400;0,600;0,700;1,200&display=swap");
+
+
 * {
   margin: 0;
   padding: 0;
@@ -17,6 +19,7 @@ a {
   font-family: "Montserrat", sans-serif;
   padding: 10px 100px;
   align-items: center;
+  /*opacity: 0;*/
   background: #675D50;
   color: #000;
   z-index: 999;
@@ -36,14 +39,20 @@ a {
   list-style: none;
   font-family: "Poppins", sans-serif;
   font-size: 1em;
-  font-weight: 500;
 }
 .header .navbar .menu li {
   margin-left: 30px;
 }
 .header .navbar .menu li a {
   color: #fff;
+  font-weight: 400;
 }
+
+.header .navbar .menu li a.active {
+  color: #fff;
+  font-weight: 600;
+}
+
 .header .navbar .auth a {
   margin-left: 10px;
   font-size: 1em;
@@ -51,13 +60,18 @@ a {
   font-weight: 600;
   padding: 5px 20px;
   border-radius: 20px;
-  background: #ABC4AA;
-  border: 2px solid #ABC4AA;
+  background: #F3DEBA;
+  border: 2px solid #F3DEBA;
   transition: all 0.3s;
 }
 .header .navbar .auth a:hover {
   background: #675D50;
-  color: #ABC4AA;
+  color: #F3DEBA;
+}
+
+.header .navbar .auth a.active {
+  background: #675D50;
+  color: #F3DEBA;
 }
 
 /*# sourceMappingURL=navbar.css.map */

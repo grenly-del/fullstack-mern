@@ -1,29 +1,22 @@
 @import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,600&family=Poppins:wght@200;300;400;500;600;700;800&family=Quicksand:wght@300;400;500;600;700&family=Roboto+Mono:ital,wght@0,300;0,400;0,600;0,700;1,200&display=swap");
 
-.left {
+.right {
+	position: relative;
 	width: 100%;
 	height: 100%;
-	position: absolute;
-	top: 40%;
-	font-family: 'Quicksand', sans-serif;
+	align-self: center;
+	width: 500px;
+	height: 450px;
 	.box {
+		width: 100%;
+		height: 100%;
 		text-align: center;
-		button {
-			background: #ABC4AA;
-			margin-top: 10px;
-			outline: none;
-			border: 2px solid #ABC4AA;
-			color: #111;
-			border-radius: 20px;
-			font-size: 1.1em;
-			font-weight: 500;
-			padding: 6px 18px;
-			cursor: pointer;
-			transition: all 0.4s;
-			&:hover {
-				background: none;
-				color: #F3DEBA;
-			}
+		img {
+			position: absolute;
+			left: 0;
+			bottom: 0;
+			width: 100%;
+			object-fit: cover;
 		}
 	}
 }
