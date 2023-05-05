@@ -1,10 +1,14 @@
 import React from 'react'
-
+import {useSelector} from 'react-redux'
 
 // ==== STYLE ====
 import './leftside.css'
 
 const LeftPage = () => {
+
+	const {username} = useSelector(state => state.auth)
+
+
 	return (
 		<div className="left">
 			<div className="box">

@@ -1,0 +1,6 @@
+.container-image {
+	width: 100%;
+	display: grid;
+	position: relative;
+	background: #F3DEBA;
+}

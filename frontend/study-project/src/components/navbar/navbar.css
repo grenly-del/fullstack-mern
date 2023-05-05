@@ -19,7 +19,6 @@ a {
   font-family: "Montserrat", sans-serif;
   padding: 10px 100px;
   align-items: center;
-  /*opacity: 0;*/
   background: #675D50;
   color: #000;
   z-index: 999;
@@ -53,7 +52,8 @@ a {
   font-weight: 600;
 }
 
-.header .navbar .auth a {
+.header .navbar .auth a,
+.header .navbar .auth button {
   margin-left: 10px;
   font-size: 1em;
   color: #675D50;
@@ -62,14 +62,17 @@ a {
   border-radius: 20px;
   background: #F3DEBA;
   border: 2px solid #F3DEBA;
+  cursor: pointer;
   transition: all 0.3s;
 }
-.header .navbar .auth a:hover {
+.header .navbar .auth a:hover,
+.header .navbar .auth button:hover {
   background: #675D50;
   color: #F3DEBA;
 }
 
-.header .navbar .auth a.active {
+.header .navbar .auth a.active,
+.header .navbar .auth button.active {
   background: #675D50;
   color: #F3DEBA;
 }

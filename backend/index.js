@@ -2,12 +2,13 @@
 // ====== DEKLARASI =======
 require('dotenv').config()
 const express = require('express')
-const mongoose = require('mongoose')
 const cors = require('cors')
+const cookie = require('cookie-parser')
 
 
 // ==== KONEKSI KE DATABASE ====
-mongoose.connect(process.env.URL_DATABASES).then(data => console.log('Database berhasil terkonek')).catch(err => console.log(err))
+const dbConnection = require('./db.js')
+dbConnection()
 
 
 // ====== ROUTE =======
@@ -15,6 +16,7 @@ const app = express()
 
 
 // ==== MIDDLEWARE ====
+app.use(cookie())
 app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))

@@ -1,10 +1,15 @@
 import React from 'react'
 import {Link, NavLink} from 'react-router-dom'
+import Logout from '../../config/authJWT.jsx'
+import Cookies from 'js-cookie'
 
 // ==== STYLE =====
 import './navbar.css'
 
 const Navbar = () => {
+
+	const token = Cookies.get('token')
+	
 	return (
 
 		<header className="header">
@@ -16,8 +21,12 @@ const Navbar = () => {
 					<li><NavLink to="todo">Todo</NavLink></li>
 				</ul>
 				<div className="auth">
-					<NavLink to="/auth/login">Login</NavLink>
-					<NavLink to="/auth/register">Register</NavLink>	
+				{token ? <Logout /> : (
+				    <>
+				      <NavLink to="/auth/login">Login</NavLink>
+				      <NavLink to="/auth/register">Register</NavLink>	
+				    </>
+				  )}
 				</div>
 			</nav>
 		</header>

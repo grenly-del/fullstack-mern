@@ -15,49 +15,36 @@ module.exports = {
 			data: users
 		})
 	},
-	postRegis: (req, res) => {
-		const {username, email, password} = req.body
+	postRegis: async (req, res) => {
+		const { username, email, password } = req.body;
+		console.log(req.body.username)
 
+			try {
+			  // HASH PASSWORD DENGAN BCRYPT
+			  const passwordHash = await bcrypt.hash(password, 10);
 
-		// ====== HASH PASSWORD DENGAN BCRYPT =======
+			  if (!passwordHash) throw new Error('password gagal di hash');
 
-		bcrypt.genSalt(10, (err, salt) => {
-			if(err) console.log('salt gagal di dapatkan')
-			bcrypt.hash(password, salt, async (err, hash) => {
-				if( err ) console.log('password gagal di hash')
+			  // SIMPAN DATA KE DATABASE
+			  const user = await new User({
+			    username: username,
+			    email: email,
+			    password: passwordHash
+			  }).save();
 
+			  res.json({
+			    message: 'User berhasil di buat',
+			    data: user
+			  });
+			} catch (err) {
+			  console.log(err.errors);
 
-					try{
-
-						// SIMPAN DATA KE DATABASE
-						const user = await new User({
-							username: username, 
-							email: email, 
-							password: hash
-						})
-						.save()
-						res.json({
-							message: 'user post berhasil di buat',
-							data: user
-						})
-
-					}catch(err) {
-						console.log(err.errors)
-
-						res.json({
-							message: 'user post berhasil di buat',
-							data: err.message
-						})
-
-					}
+			  res.status(401).json({
+			    message: 'User gagal di tambahkan',
+			    data: err.message
+			  });
+			}
 					
-
-
-
-					
-
-			})
-		})
 
 
 

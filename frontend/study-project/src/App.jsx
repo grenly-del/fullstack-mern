@@ -5,6 +5,8 @@ import Navbar from './components/navbar/navbar'
 import Home from './pages/homepage'
 import RegisterPage from './pages/authpage/register'
 import LoginPage from './pages/authpage/login'
+import AestheticImage from './components/image/aesthetic'
+import ProtectRoute from './config/protectRoute'
 
 
 function App() {
@@ -14,8 +16,10 @@ function App() {
       <div>
         <Navbar />
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/image" element={<h2>image</h2>} />
+          <Route exact path="/" element={<Home />} />
+          <Route path="/image" element={<ProtectRoute />} > 
+            <Route path="aesthetic" element={<AestheticImage/>} />
+          </Route>
           <Route path="/todo" element={<h2>todo</h2>} />
           <Route path="/auth">
             <Route path="register" element={<RegisterPage />}/>

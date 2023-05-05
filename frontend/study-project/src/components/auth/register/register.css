@@ -18,6 +18,7 @@ input, label {
   text-align: center;
 }
 .register .box h2 {
+  color: #675D50;
   text-align: center;
 }
 .register .box > div {
@@ -46,11 +47,19 @@ input, label {
   text-align: center;
 }
 .register .content {
+  width: 80%;
+  background: #675D50;
   margin-top: 30px;
   position: relative;
+  padding: 15px 0;
+  border-radius: 20px;
 }
 .register .content p {
-  text-align: justify;
+  color: #fff;
+  font-family: "Montserrat", sans-serif;
+  text-transform: capitalize;
+  text-align: center;
+  font-weight: 500;
 }
 
 /*# sourceMappingURL=register.css.map */
