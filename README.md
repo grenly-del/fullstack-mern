@@ -1,2 +1,2 @@
 # fullstack-mern
-repo ini tentang pembelajaran saya dengan teknologin mern dan ini aplikasi mern
+Repo ini adalah repo perjalanan saya belajar fullstack-mern teknologi yang di gunakan adalah MERN(MongoDB, Express, ReactJS, NodeJS)
