@@ -11,7 +11,7 @@ module.exports = {
 		// ==== AMBIL SEMUA DATA USER ======
 		const user = await User.find({})
 		if( !user ) {
-			return res.status(401).json({message: 'Data dengan nama user ini tidak terdaftar'})
+			return res.status(401).json({message: 'user tidak terdaftar'})
 		}
 		res.json({message: 'list data user', user})
 
@@ -26,7 +26,7 @@ module.exports = {
 		// ==== CEK APAKAH EMAIL ITU ADA DI DATABASE ======
 		const user = await User.findOne({email: email})
 		if( user == null) {
-			return res.status(401).json({message: 'Data dengan nama user ini tidak terdaftar'})
+			return res.status(401).json({message: 'user tidak terdaftar'})
 		}
 
 		// ======= CEK PASSWORD =======

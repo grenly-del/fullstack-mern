@@ -4,6 +4,7 @@ require('dotenv').config()
 const express = require('express')
 const cors = require('cors')
 const cookie = require('cookie-parser')
+const authJWT = require('./config/authorizationJWT')
 
 
 // ==== KONEKSI KE DATABASE ====
@@ -17,9 +18,13 @@ const app = express()
 
 // ==== MIDDLEWARE ====
 app.use(cookie())
-app.use(cors())
+app.use(cors({
+  origin: '*'
+}));
+
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
+app.use(express.static('public'))
 
 
 const authRoute = require('./routes/auths/auth.js')
@@ -30,7 +35,7 @@ app.get('/', (req, res) => {
 
 // ====== ROUTER AUTHENTIKASI =======
 app.use('/auth', authRoute)
-app.use('/image', imageRoute)
+app.use('/api/image', authJWT,imageRoute)
 
 app.use('*', (req, res) => {
 	res.send('Halaman tidak di temukan')

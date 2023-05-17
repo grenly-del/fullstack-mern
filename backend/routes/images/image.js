@@ -3,21 +3,34 @@ const router = Router()
 const authJWT = require('../../config/authorizationJWT')
 const User = require('../../models/users')
 const TokenJWT = require('../../models/token')
+const Image = require('../../models/token')
+const upload = require('../../config/multerConfig')
+const myPhotosRoutes = require('./myphotos')
+const aestheticRoutes = require('./aesthetic')
+const designRoutes = require('./design')
+const randomRoutes = require('./random')
+const multerError = require('../../errorHandling/multerError')
 
-router.get('/', authJWT, async (req, res) => {
-	
 
-	const token = await TokenJWT.findOne({}).select('token -_id')
+router.get('/', async (req, res) => {
+		
 
-
-	res.setHeader('Authorization', 'bearer' + token.token)
-
-
-	res.status(200).json({
-		message: 'berhasil',
-		user: token
-	})
+		const urlImage = `${req.protocol}://${req.get('host')}/image/myphotos`
+		res.send('hu')
+		
 })
+
+
+router.use('/myphoto', upload.array('images', 10), myPhotosRoutes)
+router.use('/aesthetic', upload.array('images', 10), aestheticRoutes)
+router.use('/design', upload.array('images', 10), designRoutes)
+router.use('/random', upload.array('images', 10), randomRoutes)
+
+
+// ======= MiddleWare =======
+
+// =========  Error Handling Multer  ==========
+router.use(multerError)
 
 
 module.exports = router

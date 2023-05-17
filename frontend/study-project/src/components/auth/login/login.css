@@ -22,6 +22,26 @@ input, label {
   color: #675D50;
   text-align: center;
 }
+
+.login .box .message {
+  font-family: 'Poppins', sans-serif;
+  border-radius: 10px;
+  font-size: 1em;
+  font-weight: 400;
+  padding: 10px 20px;
+  color: #fff;
+  margin-top: -10px;
+  text-align: center;
+  transform: scale(0);
+  background: #675D50;
+  transition: allw 0.4s;
+}
+
+.login .box .message.error {
+  margin-top: 5px;
+  transform: scale(1);
+}
+
 .login .box > div {
   display: flex;
   flex-direction: column;
@@ -52,6 +72,10 @@ input, label {
   position: relative;
 }
 .login .content p {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  line-height: 20px;
+  font-size: 0.9em;
   text-align: justify;
 }
 

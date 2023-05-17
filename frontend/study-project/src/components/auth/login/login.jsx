@@ -11,7 +11,12 @@ const Login = () => {
 
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
+	const [error, setError] = useState(null)
+	const [err, setErr] = useState('')
 	const navigate = useNavigate()
+
+
+
 
 	const handleSubmit = async (e) => {
 		e.preventDefault()
@@ -33,7 +38,7 @@ const Login = () => {
 			window.location.reload()
 
 		}catch(err) {
-
+			setError(err.response.data.message)
 		}
 
 
@@ -46,6 +51,8 @@ const Login = () => {
 				<div className="box">
 					<i class="bi bi-people" style={{fontSize: "2.3em", fontWeight: "bold", color: '#675D50'}}></i>
 					<h2>LOGIN</h2>
+				
+					<div className={`message ${error ? "error" : ''}`}>{error}</div>	
 					<div className="email">
 						<label>Email</label>
 						<input 
@@ -67,7 +74,7 @@ const Login = () => {
 					<button type="submit">SUBMIT</button>
 				</div>
 				<div className="content">
-					<p>Lorem ipsum, dolor sit amet, consectetur adipisicing elit. Porro nam, officiis ea recusandae. Cum, minus. Deleniti consectetur dignissimos ut sapiente nam maiores dolor asperiores error veritatis incidunt voluptatum, blanditiis est.</p>
+					<p>Ini adalah website yang saya buat untuk, project awal saya, fiture yang di berikan di website ini adalah Gallery, Todo, dan untuk menggunakan fiture tersebut anda diharuskan untuk login terlebih dahulu. dengan Email, dan password yang telah di daftarkan. Jika belum terdaftar silahkan daftarkan dulu, di halaman register.</p>
 				</div>
 			</form>
 		</div>

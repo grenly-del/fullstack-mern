@@ -10,7 +10,7 @@ const Register = () => {
 	const [username, setUsername] = useState('')
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
-	const [messege, setMessage] = useState('')
+	const [messege, setMessage] = useState(null)
 
 	const navigate = useNavigate()
 
@@ -29,9 +29,7 @@ const Register = () => {
 			console.log(res)
 
 		}catch(err) {
-			const message = err.response.data.data
-			const errMessage = message
-			setMessage(errMessage)
+			setMessage(err.response.data.data)
 			console.log(err.response.data.data)
 		}
 		
@@ -46,6 +44,7 @@ const Register = () => {
 				<div className="box">
 					<i class="bi bi-people-fill" style={{fontSize: "2.3em", fontWeight: "bold", color: '#675D50'}}></i>
 					<h2>REGISTER</h2>
+					<div className={`message ${messege ? "error" : ''}`}>{messege}</div>
 					<div className="username">
 						<label htmlFor="">Username</label>
 						<input 
@@ -80,7 +79,7 @@ const Register = () => {
 				</div>
 				<div className="content">
 					<p>
-						{messege ? messege : 'Silahkan Masukan Data Sesuai Form Di Atas'}
+						Silahkan daftarkan akun anda, dengan memasukan form di atas sesuai dengan label yang di berikan. Setelah anda berhasil register slihakan login.
 					</p>
 				</div>
 			</form>

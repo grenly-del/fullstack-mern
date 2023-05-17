@@ -1,11 +1,12 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {NavLink} from 'react-router-dom'
-
+import Cookies from 'js-cookie'
 
 // ===== STYLE =====
 import './style.css'
 
 const ListImage = () => {
+
 	return (
 		<div className="container-list">
 			<ul>

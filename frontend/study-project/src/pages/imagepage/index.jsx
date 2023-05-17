@@ -1,5 +1,6 @@
 import React, {useEffect} from 'react'
 import List from '../../components/image/list'
+import Footer from '../../components/image/footer'
 import {Outlet, useNavigate } from 'react-router-dom'
 
 
@@ -11,7 +12,7 @@ const ImagePages = () => {
 	const navigate = useNavigate()
 
 	useEffect(() => {
-		navigate('aesthetic')
+		navigate('myphoto')
 	}, [])
 
 
@@ -19,6 +20,7 @@ const ImagePages = () => {
 		<main className="container-image">
 			<List />
 			<Outlet/>
+			<Footer />
 		</main>
 	)
 }
