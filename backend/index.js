@@ -22,6 +22,7 @@ app.use(cors({
   origin: '*'
 }));
 
+
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 app.use(express.static('public'))
@@ -36,6 +37,7 @@ app.get('/', (req, res) => {
 // ====== ROUTER AUTHENTIKASI =======
 app.use('/auth', authRoute)
 app.use('/api/image', authJWT,imageRoute)
+
 
 app.use('*', (req, res) => {
 	res.send('Halaman tidak di temukan')

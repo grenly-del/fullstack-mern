@@ -1,12 +1,15 @@
 const express = require('express')
 const router = express.Router()
-const {postDesignController} = require('../../../controllers/images/designController')
+const {postDesignController, getDesignController ,delDesignController} = require('../../../controllers/images/designController')
 const multer = require('multer')
+const sharpFilMiddleware = require('../../../config/sharpConfig')
 
 
 router.route('/')
-	.post(postDesignController)
-
+	.post(sharpFilMiddleware, postDesignController)
+	.get(getDesignController)
+router.route('/:id')
+	.delete(delDesignController)
 
 
 

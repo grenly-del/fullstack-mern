@@ -26,12 +26,6 @@ const filterImg = async (req, res, next) => {
 
       const image = sharp(buffImg);
       return image
-        .rotate(0)
-        .resize({
-          width: 300,
-          height: 400,
-          fit: 'inside',
-        })
         .withMetadata()
         .toBuffer()
         .then((buffer) => {

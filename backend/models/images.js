@@ -1,10 +1,14 @@
 const mongoose = require('mongoose')
 
 const ImageSchema = new mongoose.Schema({
-	nama: {
+	originalName: {
 		type: String,
 		required: true,
 		unique: false
+	},
+	newName: {
+		type: String,
+		required: true,
 	},
 	urlImage: {
 		type: String,
@@ -34,15 +38,15 @@ const ImageSchema = new mongoose.Schema({
 // });
 
 
-// ================  HANDLING JIKA IMAGE SAMA DALAM CONTENTTYPE YANG SAMA =================
+// ================  HANDLING JIKA IMAGE SAMA DALAM CONTENTTYPE YANG SAMA DAN USER YANG SAMA =================
 
 ImageSchema.pre('save', async function(next) {
-  const dataType = await this.model('image').find({ contentType: this.get('contentType'), nama: this.get('nama') }).select('nama -_id').exec();
-  console.log(`ini adalah isi dataType : ${this.get('contentType')}`)
+  const dataType = await this.model('image').find({ contentType: this.get('contentType'), originalName: this.get('originalName'), user: this.get('user') }).select('nama -_id').exec(); // MENGAMBIL DATA DENGAN CONTENT TYPE YANG SAMA NAMA YANG SAMA DAN USER YANG SAMA
+  console.log(`ini adalah isi contentType : ${this.get('contentType')}`)
   let allData = await this.model('image').find({}).select('nama -_id').exec()
-
+  console.log(`ini adalah isi dataType : ${dataType}`)
   if (dataType.length > 0) {
-    console.log('nama sama');
+    console.log('nama image sama');
     console.log(`ini adalah isi this : ${this.get('nama')}`)
     next(new Error('Image Sudah ada'));
   } else {

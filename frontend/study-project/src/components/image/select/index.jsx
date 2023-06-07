@@ -1,6 +1,10 @@
 import React, {useState} from 'react'
 import Cookies from 'js-cookie'
 import axios from '../../../config/axios'
+import {useDispatch, useSelector} from 'react-redux'
+import {saveData, imageSelectors} from '../../../features/image/imageSlice'
+import {add} from '../../../features/image/promp'
+
 
 import './style.css'
 
@@ -9,7 +13,9 @@ const Select = ({type}) => {
 
 	const [images, setImages] = useState(null)
 	const [imgname, setImgName] = useState(null)
-
+	const dispatch = useDispatch()
+	const message = useSelector((state) => state.image.errorMessage)
+	const [errMessage, setErrMessage] = useState(undefined)
 
 	const handleFileChange = (e) => {
 		e.preventDefault()
@@ -21,31 +27,32 @@ const Select = ({type}) => {
 	const handleSaveImage = async () => {
   if (!images) {
     return alert('Upload Image Terlebih Dahulu');
-  } else {
-    const token = Cookies.get('token')
-    images.map(async (image) => {
-    	console.log(image)
-      const formData = new FormData();
-      formData.append('images', image);
-      
-      try{
+  }else {
 
-      		const res = await axios.post(`/api/image/${type}`, formData, {
-		        headers: {
-		          Authorization: `bearer ${token}`,
-		          'Content-Type': 'multipart/form-data',
-		        },
-		      });
+  	
+  		try{
 
-      		console.log(res)
-      }catch(err) {
-      	console.log(err)
-      	if( err ) alert(err.response.data.errors)
-      }
 
-    });
+  			let data = await dispatch(saveData({images, type}))
+  			let msgErr = data.error.message
+	  		if( !data.error.message ) {
+	  			console.log('sukses')
+
+	  		}else {
+  					dispatch(add({cls: 'active', msg: data.error.message}))
+	  		}
+
+  		}catch(err) {
+
+  			console.log(err)	
+  			window.location.reload()
+
+  		}
+
+  		
+
   }
-};
+}
 
 
 	return (
@@ -63,6 +70,7 @@ const Select = ({type}) => {
 					<label htmlFor="img">Kirim Gambar</label>
 				</div>
 				<button onClick={handleSaveImage}><i class="bi bi-box-arrow-in-right"></i></button>
+				
 		</div>
 	)
 }

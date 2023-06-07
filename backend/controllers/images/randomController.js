@@ -20,6 +20,7 @@ module.exports = {
 		    	console.log(dataImage)
 
 		    	let file = dataImage.img
+		    	let userLog = req.user
 
 
 
@@ -36,6 +37,7 @@ module.exports = {
 				            nama: file[0].originalname,
 				            urlImage: urlImage,
 				            contentType: dataImage.namePath,
+				            user: userLog.userId
 				          }).save()
 
 
@@ -47,7 +49,7 @@ module.exports = {
 
 				      res.status(200).json({
 				        message: 'berhasil',
-				        urlImg: allImagesData,
+				        urlImg: allImagesData
 				      })
 
 		          }catch(err) {
@@ -73,8 +75,9 @@ module.exports = {
     const baseurl = req.baseUrl;
     const arr = baseurl.split('/');
     const namePath = arr[3];
+    let userLog = req.user
 
-    const imgData = await Image.find({ contentType: namePath });
+    const imgData = await Image.find({ contentType: namePath, user: userLog.userId });
 
     if(!imgData) res.status(200).json({message: 'Halaman masih kosong'})
 

@@ -1,20 +1,22 @@
 .container-list {
 	width: 100%;
-	height: 100%;
+	/*height: 100%;*/
 	left: 0;
 	position: relative;	
 	display: flex;
-	z-index: 9999999;
-	flex-direction: column;
+	z-index: 99;
+	background: #675D50;
+	justify-content: center;
 	margin-top: 60px;
+	align-items: center;
 }
 
 .container-list ul {
-	position: relative;
+	/*position: relative;*/
+	justify-self: center;
 	padding: 10px 0;
 	display: flex;
 	justify-content: center;
-	background: #675D50;
 	/*opacity: 0;*/
 	gap: 50px;
 	font-family: 'Poppins', sans-serif;
@@ -28,4 +30,66 @@
 
 .container-list ul li a {
 	color: #fff;
+}
+
+.container-list .mode-container {
+	position: absolute;
+	right: 6px;
+	font-family: 'Quicksand', sans-serif;
+	color: #eee;
+	font-weight: 400;
+}
+
+.container-list .mode-container .checkbox-container {
+  position: relative;
+  padding-left: 30px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.container-list .mode-container .checkmark {
+  align-self: center;
+  position: absolute;
+  left: 0;
+  height: 23px;
+  width: 23px;
+  background-color: #eee;
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
+  transform: rotate(45deg);
+}
+
+.container-list .mode-container input[type="checkbox"] {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  cursor: pointer;
+}
+
+.container-list .mode-container input[type="checkbox"]:checked + .checkmark {
+  background-color: #2196F3;
+}
+
+/* Animasi tanda centang muncul */
+.container-list .mode-container .checkmark:after {
+  content: "";
+  position: absolute;
+  display: block;
+  opacity: 0; /* Atur opasitas awal menjadi 0 */
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) scale(0); /* Skala awal menjadi 0 */
+  width: 7px;
+  height: 13px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transition: opacity 0.3s ease, transform 0.3s ease; /* Transisi opasitas dan transformasi */
+}
+
+/* Animasi tanda centang muncul saat checkbox dicentang */
+.container-list .mode-container input[type="checkbox"]:checked + .checkmark:after {
+  opacity: 1; /* Atur opasitas menjadi 1 */
+  transform: translate(-50%, -50%) scale(1); /* Skala menjadi 1 */
 }

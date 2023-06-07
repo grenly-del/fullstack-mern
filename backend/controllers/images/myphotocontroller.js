@@ -17,7 +17,6 @@ module.exports = {
 	    	
 
 	    		let dataImage = req.newImage
-			    	console.log(dataImage)
 
 			    	let file = dataImage.img
 
@@ -34,7 +33,8 @@ module.exports = {
 					          // ============== MENYIMPAN DATA IMAGE KE DATABASE ===============
 					   
 					          const imgData = await new Image({
-					            nama: file[0].originalname,
+					            originalName: file[0].originalname,
+					            newName: file[0].filename,
 					            urlImage: urlImage,
 					            contentType: dataImage.namePath,
 					            user: userLog.userId
@@ -43,7 +43,7 @@ module.exports = {
 
 					          // =============== MENGAMBIL SEMUA DATA IMAGE DARI DATABASE SESUAI DENGAN HALAMAN ================
 
-					          allImagesData = await Image.find({contentType: dataImage.namePath})
+					          allImagesData = await Image.find({contentType: dataImage.namePath, user: userLog.userId})
 
 
 
@@ -55,7 +55,7 @@ module.exports = {
 			          }catch(err) {
 			          		
 			          		let message = mongooseError(err)
-			          		console.log(err.message)
+	
 
 			          		fs.unlink(dataImage.newPath, (err) => {
 			          			if( err ) console.log(err)
@@ -81,5 +81,42 @@ module.exports = {
 	    console.log(imgData)
 	    if( !imgData ) res.status(200).json({message: 'Halaman masih kosong'})
 	    res.status(200).json({ message: 'berhasil', urlImg: imgData });
+	},
+	delMyPhotoController: async (req, res) => {
+		const {id} = req.params
+		const baseUrl = req.baseUrl
+		const userLog = req.user.userId
+		
+		// ======== AMBIL DATA YANG DIBUTHKAN DARI CLIENT =========
+		let baseurl = baseUrl.split('/')
+		let type = baseurl[3]
+
+		const dest = path.join('public/images', type)
+
+		try{
+
+					// ======== Delete Data Sesuai Dengan ID dan Type Image nama user =========
+				let delData = await Image.findOneAndDelete({_id: id, contentType: type, user: userLog}).exec()
+				
+				let newPathDel = path.join(dest, delData.newName)
+
+				// ======== HAPUS IMAGE DARI FILE =======
+				fs.unlink(newPathDel, (err) => {
+					if( err ) console.log(err)
+				})
+
+				// ======== AMBIL SEMUA DATA YANG DI DATABASE berdasarkan TYPE dan USER YANG LOGIN ========
+				let newImage = await Image.find({contentType: type, user: userLog})			
+				res.status(200).json({
+					data: newImage,
+					message: 'sukses'
+				})
+
+		}catch(err) {
+
+			console.log(err.message)
+			res.send('err')
+
+		}
 	}
 }

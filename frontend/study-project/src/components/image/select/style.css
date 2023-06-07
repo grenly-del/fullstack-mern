@@ -1,7 +1,7 @@
 .input-image {
 	position: absolute;
 	right: 0;
-	z-index: 9999999;
+	z-index: 99;
 	top: 0;
 	display: flex;
 	margin: 0 50px;
